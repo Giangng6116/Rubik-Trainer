@@ -1,25 +1,44 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+  TextInput,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
+import React, { useState } from "react";
 
 export default function Profile() {
+  
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#C637D9", "#5928A2"]} style={styles.background}>
         <Text style={{ marginTop: 25, fontSize: 25, color: "white" }}>
-          Profile
+          Info
         </Text>
       </LinearGradient>
       <View style={{ justifyContent: "center", alignItems: "center" }}>
-        <TouchableOpacity style={styles.button}>
-          
-          <View style={{flexDirection: "row", justifyContent: "flex-start", alignItems: "center", paddingHorizontal: 10}}>
-            <Image source={require("../../assets/icon.png")} style={styles.profilePicture}/>
-            <Text style={{fontSize: 20, color: "white", paddingHorizontal: 10}}>Change your info</Text>
-          </View>
-        </TouchableOpacity>
-        <Text></Text>
+        <Text>Name</Text>
+
+        <TextInput
+          style={styles.inputBox}
+          placeholder="Enter your name"
+          secureTextEntry
+        />
+        <Text style={{ fontWeight: "500", fontSize: 14 }}>Phone number</Text>
+        <TextInput
+          style={styles.inputBox}
+          placeholder="Phone number"
+          secureTextEntry
+        />
+        <Text style={{ fontWeight: "500", fontSize: 14 }}>Starting date</Text>
+        <TextInput
+          style={styles.inputBox}
+          placeholder="New Password"
+          secureTextEntry
+        />
       </View>
 
       <StatusBar style="auto" />
@@ -38,11 +57,10 @@ const styles = StyleSheet.create({
     backgroundColor: "gray",
     marginVertical: 50,
   },
-  profilePicture: {
-    borderRadius: 20,
-    width: 40,
+  inputBox: {
+    width: 342,
     height: 40,
-    marginVertical: 10
+    borderRadius: 100,
   },
   background: {
     flex: 0.1,

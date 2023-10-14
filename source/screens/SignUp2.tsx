@@ -30,48 +30,19 @@ const CustomizedTextInput = (props: CustomizedTextInputProps) => {
   const { ...CustomizedTextInput } = props;
   return <TextInput style={styles.textInput} {...CustomizedTextInput} />;
 };
-export default function Login() {
+export default function SignUp2() {
   function abc() {
     console.log("abc");
   }
   return (
     <View style={styles.container}>
       <LinearGradient colors={["#C637D9", "#5928A2"]} style={styles.background}>
-        <Image source={require("../../assets/rubik.png")}></Image>
-        <Text style={{ color: "white", fontSize: 32, marginBottom: 100 }}>
-          <Text style={{ fontWeight: "900" }}>RUBIK</Text> TRAINER
-        </Text>
-        <View style={styles.inputBox}>
-          <FontAwesome name="phone" size={20} color="white" />
-          <CustomizedTextInput
-            placeholder="Enter your phone"
-            placeholderTextColor={"white"}
-          />
-        </View>
-        <View style={styles.inputBox}>
-          <AntDesign name="lock" size={24} color="white" />
-          <CustomizedTextInput
-            placeholder="Enter your password"
-            secureTextEntry
-            placeholderTextColor={"white"}
-          />
-        </View>
-        <View style={{ flexDirection: "row-reverse", width: 275 }}>
-          <TouchableOpacity>
-            <Text style={{ textDecorationLine: "underline" }}>
-              Forgot your password?
-            </Text>
-          </TouchableOpacity>
-        </View>
-
-        <CustomizedButton text="Login" textColor="black" />
-        <View style={styles.signUpContainer}>
-          <Text>Don't have an account? </Text>
-          <TouchableOpacity>
-            <Text style={{ textDecorationLine: "underline", color: "white" }}>
-              Sign up
-            </Text>
-          </TouchableOpacity>
+        <Text>OTP code has been sent to the phone number 0913xxxx06</Text>
+        <View style={{flexDirection: "row", justifyContent: "space-between"}}>
+          <TextInput style={styles.otpBox} />
+          <TextInput style={styles.otpBox} />
+          <TextInput style={styles.otpBox} />
+          <TextInput style={styles.otpBox} />
         </View>
       </LinearGradient>
       <StatusBar style="auto" />
@@ -111,10 +82,11 @@ const styles = StyleSheet.create({
     borderColor: "white",
     marginBottom: 20,
   },
-  signUpContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginTop: 50,
-  },
+  otpBox: {
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    borderWidth: 2,
+    
+  }
 });

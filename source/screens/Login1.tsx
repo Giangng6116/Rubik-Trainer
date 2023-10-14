@@ -12,27 +12,27 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-type CustomizedButtonProps = {
-  text: string;
-  textColor?: string;
-  textAlign?: string;
-} & TouchableOpacityProps;
-type CustomizedTextInputProps = {} & TextInputProps;
-const CustomizedButton = (props: CustomizedButtonProps) => {
-  const { text, textColor, ...CustomizedButton } = props;
-  return (
-    <TouchableOpacity style={styles.button} {...CustomizedButton}>
-      <Text style={{ color: textColor, textAlign: "center" }}>{text}</Text>
-    </TouchableOpacity>
-  );
-};
-const CustomizedTextInput = (props: CustomizedTextInputProps) => {
-  const { ...CustomizedTextInput } = props;
-  return <TextInput style={styles.textInput} {...CustomizedTextInput} />;
-};
-export default function SignUp() {
+import { useState } from "react";
+import CustomizedButton from "./components/CustomizedButton";
+import CustomizedTextInput from "./components/CustomizedTextInput";
+
+export default function Login1({navigation}) {
+    const password="12345678";
+    const [pass, setPass] = useState("");
+    const [messageShown, setMessageShown] = useState(false);
   function abc() {
     console.log("abc");
+  }
+  function onEnterPassWord (text) {
+    setPass (text)
+  }
+  function onLogin () {
+    if (pass!==password) {
+        setMessageShown(true)
+
+    } else {
+        
+    }
   }
   return (
     <View style={styles.container}>
@@ -45,31 +45,34 @@ export default function SignUp() {
           <FontAwesome name="phone" size={20} color="white" />
           <CustomizedTextInput
             placeholder="Enter your phone"
-            placeholderTextColor={"white"}
+            
           />
         </View>
-        <View
-          style={styles.inputBox}
-        >
+        <View style={styles.inputBox}>
           <AntDesign name="lock" size={24} color="white" />
           <CustomizedTextInput
             placeholder="Enter your password"
-            secureTextEntry
-            placeholderTextColor={"white"}
+            variant="password"
+            onChangeText={onEnterPassWord}
           />
         </View>
-        <View
-          style={styles.inputBox}
-        >
-          <AntDesign name="lock" size={24} color="white" />
-          <CustomizedTextInput
-            placeholder="Enter your password again"
-            secureTextEntry
-            placeholderTextColor={"white"}
-          />
+        <View style={{ flexDirection: "row-reverse", width: 275 }}>
+          <TouchableOpacity onPress={() => {navigation.navigate("Forgotpassword1")}}>
+            <Text style={{ textDecorationLine: "underline" }}>
+              Forgot your password?
+            </Text>
+          </TouchableOpacity>
         </View>
-
-        <CustomizedButton text="Sign up" textColor="black" />
+        {messageShown && <Text>Incorrect Password</Text>}
+        <CustomizedButton text="Login" onPress={onLogin} />
+        <View style={styles.signUpContainer}>
+          <Text>Don't have an account? </Text>
+          <TouchableOpacity onPress={() => {navigation.navigate("SignUp1")}}>
+            <Text style={{ textDecorationLine: "underline", color: "white" }}>
+              Sign up
+            </Text>
+          </TouchableOpacity>
+        </View>
       </LinearGradient>
       <StatusBar style="auto" />
     </View>
@@ -85,21 +88,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  button: {
-    backgroundColor: "white",
-    width: 100,
-    height: 50,
-    marginTop: 100,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 20,
-  },
-  textInput: {
-    width: 250,
-    paddingHorizontal: 4,
-    borderColor: "white",
-    marginVertical: 10,
-  },
+  
+  
   inputBox: {
     flexDirection: "row",
     justifyContent: "center",
@@ -108,5 +98,10 @@ const styles = StyleSheet.create({
     borderColor: "white",
     marginBottom: 20,
   },
-  
+  signUpContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 50,
+  },
 });
