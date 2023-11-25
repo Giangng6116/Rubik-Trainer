@@ -31,8 +31,11 @@ export default function Login1({navigation}) {
         setMessageShown(true)
 
     } else {
-        
+        toPhoneVerification ()
     }
+  }
+  function toPhoneVerification(){
+    navigation.navigate("Forgotpassword3", {pass})
   }
   return (
     <View style={styles.container}>
@@ -57,7 +60,7 @@ export default function Login1({navigation}) {
           />
         </View>
         <View style={{ flexDirection: "row-reverse", width: 275 }}>
-          <TouchableOpacity onPress={() => {navigation.navigate("Forgotpassword1")}}>
+          <TouchableOpacity onPress={toPhoneVerification}>
             <Text style={{ textDecorationLine: "underline" }}>
               Forgot your password?
             </Text>
@@ -74,7 +77,6 @@ export default function Login1({navigation}) {
           </TouchableOpacity>
         </View>
       </LinearGradient>
-      <StatusBar style="auto" />
     </View>
   );
 }

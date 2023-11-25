@@ -15,8 +15,12 @@ import { AntDesign } from "@expo/vector-icons";
 import HeaderBackground from "./components/HeaderBackground";
 import CustomizedButton from "./components/CustomizedButton";
 import CustomizedTextInput from "./components/CustomizedTextInput";
-export default function Forgotpassword1({navigation}:any) {
-  
+import { useState } from "react";
+export default function PhoneVerify({navigation}:any) {
+  const [phone, setPhone] = useState("");
+  function onChangPhone (text) {
+    setPhone(text)
+  }
   return (
     <>
       <LinearGradient colors={["#C637D9", "#5928A2"]} style={styles.background}>
@@ -26,9 +30,10 @@ export default function Forgotpassword1({navigation}:any) {
           <CustomizedTextInput
             placeholder="Enter your phone"
             variant="default"
+            onChangeText={onChangPhone}
           />
         </View>
-        <CustomizedButton text="Reset Pass" onPress={navigation.navigate("Forgotpassword2")} />
+        <CustomizedButton text="Reset Pass" onPress={navigation.navigate("Forgotpassword3", {phone})} />
       </LinearGradient>
       <StatusBar style="auto" />
     </>

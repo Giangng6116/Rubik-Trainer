@@ -1,35 +1,37 @@
-import * as React from 'react';
-import { View, Text, Button } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login1 from './source/screens/Login1';
-import SignUp1 from './source/screens/SignUp1';
-import SignUp2 from './source/screens/SignUp2';
-import Profile from './source/screens/Profile';
-import Forgotpassword1 from './source/screens/Forgotpassword1';
-import Forgotpassword2 from './source/screens/Forgotpassword2';
+import * as React from "react";
+import { Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { AntDesign } from "@expo/vector-icons";
+import Home from "./source/screens/BottomTab/Home";
+import Plan from "./source/screens/BottomTab/Plan";
+import Comps from "./source/screens/BottomTab/Comps";
+import Profile from "./source/screens/BottomTab/Profile";
+import { NativeBaseProvider } from "native-base";
 
+const Tab = createBottomTabNavigator();
 
-const Stack = createNativeStackNavigator();
-
-function App() {
+function MyTabs() {
   return (
-    <>
-      <NavigationContainer>
-      <Stack.Navigator initialRouteName='Forgotpassword2' screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Login1" component={Login1} />
-        <Stack.Screen name="SignUp1" component={SignUp1} />
-        <Stack.Screen name="Profile" component={Profile}/>
-        <Stack.Screen name="Forgotpassword1" component={Forgotpassword1}/>
-        <Stack.Screen name="Forgotpassword2" component={Forgotpassword2}/>
-      </Stack.Navigator>
-      
-    </NavigationContainer>
-    </>
-    
-    
-
+    <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{ tabBarIcon: () => <AntDesign name="home" /> }}
+      />
+      <Tab.Screen name="Plan" component={Plan} />
+      <Tab.Screen name="Comps" component={Comps} />
+      <Tab.Screen name="Profile" component={Profile} />
+    </Tab.Navigator>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <NativeBaseProvider>
+      <NavigationContainer>
+        <MyTabs />
+      </NavigationContainer>
+    </NativeBaseProvider>
+  );
+}
